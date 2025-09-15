@@ -6,6 +6,7 @@ import {
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
 import * as TanstackQuery from "@/providers/query/root-provider";
 import { parse, stringify } from "jsurl2";
+import "@/global-middleware";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";

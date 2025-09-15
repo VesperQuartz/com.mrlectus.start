@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import {
 	HeadContent,
 	Scripts,
@@ -61,6 +62,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					]}
 				/>
 				<Scripts />
+				<Toaster />
 			</body>
 		</html>
 	);

@@ -5,6 +5,7 @@
       "name": "com.mrlectus.start",
       "dependencies": {
         "@faker-js/faker": "^9.6.0",
+        "@fontsource-variable/hanken-grotesk": "^5.2.7",
         "@hookform/resolvers": "^5.2.2",
         "@neondatabase/serverless": "^1.0.1",
         "@orpc/client": "^1.7.5",
@@ -335,6 +336,8 @@
     "@floating-ui/react-dom": ["@floating-ui/react-dom@2.1.6", "", { "dependencies": { "@floating-ui/dom": "^1.7.4" }, "peerDependencies": { "react": ">=16.8.0", "react-dom": ">=16.8.0" } }, "sha512-4JX6rEatQEvlmgU80wZyq9RT96HZJa88q8hp0pBd+LrczeDI4o6uA2M+uvxngVHo4Ihr8uibXxH6+70zhAFrVw=="],
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.10", "", {}, "sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ=="],
+
+    "@fontsource-variable/hanken-grotesk": ["@fontsource-variable/hanken-grotesk@5.2.7", "", {}, "sha512-yEh1cYdV7Xxb7nvszyNXvDSVJvdyTxPAeZTQ2CcdQZZ4cElCezoERfimgDCkheFzpbP1qyy7hW19smI5J/Brpg=="],
 
     "@hexagon/base64": ["@hexagon/base64@1.1.28", "", {}, "sha512-lhqDEAvWixy3bZ+UOYbPwUbBkwBq5C1LAJ/xPC8Oi+lL54oyakv/npbA0aU2hgCsx/1NUd4IBvV03+aUBWxerw=="],
 
