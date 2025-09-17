@@ -5,6 +5,9 @@ import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
+	server: {
+		allowedHosts: ["mrlectus.local"]
+	},
   plugins: [
     // this is the plugin that enables path aliases
     viteTsConfigPaths({
@@ -13,7 +16,7 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart({
       customViteReactPlugin: true,
-			target: 'node_server',
+			target: 'node-server',
     }),
     viteReact(),
   ],
