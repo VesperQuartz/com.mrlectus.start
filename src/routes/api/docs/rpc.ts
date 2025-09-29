@@ -1,5 +1,3 @@
-import '@/polyfill'
-
 import { OpenAPIHandler } from '@orpc/openapi/fetch'
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4'
 import { experimental_SmartCoercionPlugin as SmartCoercionPlugin } from '@orpc/json-schema'
@@ -56,14 +54,14 @@ const handler = new OpenAPIHandler(router, {
 
 async function handle({ request }: { request: Request }) {
   const { response } = await handler.handle(request, {
-    prefix: '/api',
+    prefix: '/api/docs/rpc',
     context: {},
   })
 
   return response ?? new Response('Not Found', { status: 404 })
 }
 
-export const Route = createFileRoute('/api/$')({
+export const Route = createFileRoute('/api/docs/rpc')({
   server: {
     handlers: {
       HEAD: handle,
