@@ -2,7 +2,7 @@ import { createRouterClient } from "@orpc/server";
 import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
-import { getRequestHeaders, } from "@tanstack/react-start/server";
+import { getCookies, getRequestHeaders, } from "@tanstack/react-start/server";
 import { createIsomorphicFn } from "@tanstack/react-start";
 
 import type { RouterClient } from "@orpc/server";
@@ -14,6 +14,7 @@ const getORPCClient = createIsomorphicFn()
 		createRouterClient(router, {
 			context: () => ({
 				headers: getRequestHeaders(),
+				cookies: getCookies(),
 			}),
 		}),
 	)
