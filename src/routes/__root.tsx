@@ -10,11 +10,11 @@ import { Toaster } from "@/components/ui/sonner";
 import TanStackQueryDevtools from "@/providers/query/devtools";
 import appCss from "../globals.css?url";
 
-interface MyRouterContext {
+interface RootContext {
 	queryClient: QueryClient;
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
+export const Route = createRootRouteWithContext<RootContext>()({
 	head: () => ({
 		meta: [
 			{

@@ -17,6 +17,7 @@
     "check": "biome check"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.51.0",
     "@faker-js/faker": "^10.0.0",
     "@fontsource-variable/hanken-grotesk": "^5.2.8",
     "@hookform/resolvers": "^5.2.2",
