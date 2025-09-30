@@ -21,6 +21,34 @@ const getORPCClient = createIsomorphicFn()
 	.client((): RouterClient<typeof router> => {
 		const link = new RPCLink({
 			url: `${window.location.origin}/api/rpc`,
+
+			method: ({ context }, path) => {
+				// Use GET for cached responses
+				if (context?.cache) {
+					return "GET";
+				}
+
+				// Use GET for rendering requests
+				if (typeof window === "undefined") {
+					return "GET";
+				}
+
+				// Use GET for read-like operations
+				if (path.at(-1)?.match(/^(?:get|find|list|search|show)(?:[A-Z].*)?$/)) {
+					return "GET";
+				}
+
+				// Use PUT for update-like operations
+				if (path.at(-1)?.match(/^(?:update|change)(?:[A-Z].*)?$/)) {
+					return "PUT";
+				}
+
+				// Use PATCH for patch-like operations
+				if (path.at(-1)?.match(/^(?:patch)(?:[A-Z].*)?$/)) {
+					return "PATCH";
+				}
+				return "POST";
+			},
 		});
 		return createORPCClient(link);
 	});

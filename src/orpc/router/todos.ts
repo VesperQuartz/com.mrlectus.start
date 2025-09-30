@@ -7,7 +7,7 @@ const todos = [
   { id: 3, name: 'Finish the project' },
 ]
 
-export const listTodos = os.input(z.object({})).handler(() => {
+export const listTodos = os.route({method: "GET", path: "/todo"}).input(z.object({})).handler(() => {
   return todos
 })
 
