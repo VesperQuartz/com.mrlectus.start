@@ -7,7 +7,7 @@ const App = () => {
 			input: {
 		}
 	}));
-	console.log(todos);
+	console.log(todos?.data);
 	return (
 		<div className="text-center">
 			<h1 className="text-3xl font-bold">com.mrlectus.start</h1>
