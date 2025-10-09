@@ -1,19 +1,16 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": false,
-		"experimentalScannerIgnores": ["src/routeTree.gen.ts"],
-		"includes": ["src/*", ".vscode/*", "index.html", "vite.config.js"]
+		"ignoreUnknown": true
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab",
-		"formatWithErrors": false
+		"indentStyle": "tab"
 	},
 	"linter": {
 		"enabled": true,
