@@ -6,6 +6,7 @@ dist-ssr
 count.txt
 .env
 .envrc
+.vercel
 .nitro
 .tanstack
 .output

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { orpc } from "@/orpc/client";
+import { orpc } from "@/lib/orpc/client";
 
 const App = () => {
 	const todos = useQuery(

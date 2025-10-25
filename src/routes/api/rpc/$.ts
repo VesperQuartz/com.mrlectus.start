@@ -1,42 +1,42 @@
-import '@/polyfill'
+import "@/polyfill";
 
-import { RPCHandler } from '@orpc/server/fetch'
-import { createFileRoute } from '@tanstack/react-router'
-import router from '@/orpc/router'
-import { getCookies } from "@tanstack/react-start/server"
-import { CORSPlugin } from '@orpc/server/plugins'
-import { BatchHandlerPlugin
- } from '@orpc/server/plugins'
-import { CompressionPlugin } from '@orpc/server/fetch'
-import { BodyLimitPlugin } from '@orpc/server/fetch'
+import {
+	BodyLimitPlugin,
+	CompressionPlugin,
+	RPCHandler,
+} from "@orpc/server/fetch";
+import { BatchHandlerPlugin, CORSPlugin } from "@orpc/server/plugins";
+import { createFileRoute } from "@tanstack/react-router";
+import { getCookies } from "@tanstack/react-start/server";
+import router from "@/lib/orpc/router";
 
 const handler = new RPCHandler(router, {
 	plugins: [
 		new CORSPlugin({
-			origin: (origin, options) => origin,
-			allowMethods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE', 'PATCH'],
+			origin: (origin, _options) => origin,
+			allowMethods: ["GET", "HEAD", "PUT", "POST", "DELETE", "PATCH"],
 		}),
 		new BatchHandlerPlugin(),
-    new CompressionPlugin(),
+		new CompressionPlugin(),
 		new BodyLimitPlugin({
-      maxBodySize: 1024 * 1024 * 5, // 5MB
-    }),
-	]
-})
+			maxBodySize: 1024 * 1024 * 5,
+		}),
+	],
+});
 
 async function handle({ request }: { request: Request }) {
 	const { response } = await handler.handle(request, {
-		prefix: '/api/rpc',
+		prefix: "/api/rpc",
 		context: {
 			headers: request.headers,
 			cookies: getCookies(),
 		},
-	})
+	});
 
-	return response ?? new Response('Not Found', { status: 404 })
+	return response ?? new Response("Not Found", { status: 404 });
 }
 
-export const Route = createFileRoute('/api/rpc/$')({
+export const Route = createFileRoute("/api/rpc/$")({
 	server: {
 		handlers: {
 			HEAD: handle,
@@ -47,4 +47,4 @@ export const Route = createFileRoute('/api/rpc/$')({
 			DELETE: handle,
 		},
 	},
-})
+});
