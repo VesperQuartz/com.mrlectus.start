@@ -12,9 +12,6 @@ const config = defineConfig(() => {
 		server: {
 			allowedHosts: ["*.local"],
 		},
-		nitro: {
-			preset: "node_server",
-		},
 		plugins: [
 			devtools(),
 			// this is the plugin that enables path aliases
@@ -23,10 +20,8 @@ const config = defineConfig(() => {
 			}),
 			tailwindcss(),
 			tanstackStart(),
-			// nitro(),
 			nitroV2Plugin({
-				preset: "node_server",
-				compatibilityDate: "2025-10-21",
+				sourceMap: true,
 			}),
 			viteReact({
 				babel: {
