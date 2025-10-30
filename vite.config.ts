@@ -9,7 +9,7 @@ import viteTsConfigPaths from "vite-tsconfig-paths";
 const config = defineConfig(() => {
 	return {
 		server: {
-			allowedHosts: ["*.local"],
+			allowedHosts: ["*.local", "strong-carefully-fly.ngrok-free.app"],
 		},
 		plugins: [
 			devtools(),

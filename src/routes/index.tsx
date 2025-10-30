@@ -10,4 +10,5 @@ const App = () => {
 
 export const Route = createFileRoute("/")({
 	component: App,
+	loader: async () => {},
 });
