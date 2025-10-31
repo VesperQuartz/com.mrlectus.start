@@ -1,4 +1,5 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
+import { FormDevtoolsPlugin } from "@tanstack/react-form-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import {
 	createRootRouteWithContext,
@@ -9,7 +10,6 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "@/components/ui/sonner";
 import TanStackQueryDevtools from "@/providers/query/devtools";
 import appCss from "../globals.css?url";
-import { FormDevtoolsPlugin } from '@tanstack/react-form-devtools'
 
 interface RootContext {
 	queryClient: QueryClient;
@@ -51,6 +51,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<TanStackDevtools
 					config={{
 						position: "bottom-left",
+						openHotkey: ["Meta", "Shift", "O"],
 					}}
 					plugins={[
 						{
@@ -58,7 +59,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 							render: <TanStackRouterDevtoolsPanel />,
 						},
 						TanStackQueryDevtools,
-						FormDevtoolsPlugin()
+						FormDevtoolsPlugin(),
 					]}
 				/>
 				<Scripts />
