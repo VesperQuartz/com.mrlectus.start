@@ -1,5 +1,5 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { FormDevtoolsPlugin } from "@tanstack/react-form-devtools";
+import { formDevtoolsPlugin } from "@tanstack/react-form-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import {
 	createRootRouteWithContext,
@@ -8,8 +8,8 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "@/components/ui/sonner";
+import appCss from "@/globals.css?url";
 import TanStackQueryDevtools from "@/providers/query/devtools";
-import appCss from "../globals.css?url";
 
 interface RootContext {
 	queryClient: QueryClient;
@@ -59,7 +59,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 							render: <TanStackRouterDevtoolsPanel />,
 						},
 						TanStackQueryDevtools,
-						FormDevtoolsPlugin(),
+						formDevtoolsPlugin(),
 					]}
 				/>
 				<Scripts />

@@ -21,7 +21,7 @@ const config = defineConfig(() => {
 			nitro({
 				config: {
 					preset: "bun",
-					sourceMap: true,
+					sourcemap: true,
 				},
 			}),
 			viteReact({
