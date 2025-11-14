@@ -19,10 +19,8 @@ const config = defineConfig(() => {
 			tailwindcss(),
 			tanstackStart(),
 			nitro({
-				config: {
-					preset: "bun",
-					sourcemap: true,
-				},
+				preset: "bun",
+				sourcemap: true,
 			}),
 			viteReact({
 				babel: {
