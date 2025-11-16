@@ -1,7 +1,34 @@
-import { Hono } from "hono";
+import { poweredBy } from "hono/powered-by";
+import { prettyJSON } from "hono/pretty-json";
+import { requestId } from "hono/request-id";
+import { secureHeaders } from "hono/secure-headers";
+import { pinoLogger } from "hono-pino";
+import pino from "pino";
+import { factory } from "./factory";
 
-const app = new Hono().basePath("/api");
+const app = factory.createApp().basePath("/api");
 
-app.get("/hono", (c) => c.text("Hello Hono!"));
+app.use(poweredBy());
+app.use(secureHeaders());
+app.use(requestId());
+app.use(
+	pinoLogger({
+		pino: pino({
+			level: "info",
+			transport: {
+				target: "hono-pino/debug-log",
+			},
+		}),
+		contextKey: "logger" as const,
+	}),
+);
+
+app.use(prettyJSON());
+
+app.get("/hono", (c) => {
+	const logger = c.get("logger");
+	logger.error("Hello Hono");
+	return c.json({ message: "Hello Hono" });
+});
 
 export default app;
