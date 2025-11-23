@@ -1,10 +1,10 @@
+import to from "await-to-ts";
 import { betterAuth } from "better-auth";
-import { reactStartCookies } from "better-auth/react-start";
-import { db } from "./db";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, bearer, openAPI } from "better-auth/plugins";
+import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { MailServer } from "@/services/mail";
-import to from "await-to-ts";
+import { db } from "./db";
 import { transporter } from "./mail";
 import { ac, adminRole, customRole, userRole } from "./permission";
 
@@ -62,7 +62,7 @@ export const auth = betterAuth({
 		}),
 		openAPI(),
 		bearer(),
-		reactStartCookies(), // Make sure this is last
+		tanstackStartCookies(),
 	],
 	databaseHooks: {
 		user: {
