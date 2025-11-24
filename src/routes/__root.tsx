@@ -9,6 +9,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "@/components/ui/sonner";
 import appCss from "@/globals.css?url";
+import { LoadingProvider } from "@/providers/loaders/loader";
 import TanStackQueryDevtools from "@/providers/query/devtools";
 
 interface RootContext {
@@ -47,21 +48,23 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
-				{children}
-				<TanStackDevtools
-					config={{
-						position: "bottom-left",
-						openHotkey: ["Meta", "Shift", "O"],
-					}}
-					plugins={[
-						{
-							name: "Tanstack Router",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-						TanStackQueryDevtools,
-						formDevtoolsPlugin(),
-					]}
-				/>
+				<LoadingProvider>
+					{children}
+					<TanStackDevtools
+						config={{
+							position: "bottom-left",
+							openHotkey: ["Meta", "Shift", "O"],
+						}}
+						plugins={[
+							{
+								name: "Tanstack Router",
+								render: <TanStackRouterDevtoolsPanel />,
+							},
+							TanStackQueryDevtools,
+							formDevtoolsPlugin(),
+						]}
+					/>
+				</LoadingProvider>
 				<Scripts />
 				<Toaster />
 			</body>
