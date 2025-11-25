@@ -12,7 +12,7 @@ import appCss from "@/globals.css?url";
 import { LoadingProvider } from "@/providers/loaders/loader";
 import TanStackQueryDevtools from "@/providers/query/devtools";
 
-interface RootContext {
+export interface RootContext {
 	queryClient: QueryClient;
 }
 
