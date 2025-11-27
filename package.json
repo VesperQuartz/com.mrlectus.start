@@ -21,6 +21,7 @@
 		"@dotenvx/dotenvx": "^1.51.1",
 		"@faker-js/faker": "^10.1.0",
 		"@fontsource-variable/hanken-grotesk": "^5.2.8",
+		"@hono/standard-validator": "^0.2.0",
 		"@hookform/resolvers": "^5.2.2",
 		"@icons-pack/react-simple-icons": "^13.8.0",
 		"@neondatabase/serverless": "^1.0.2",
