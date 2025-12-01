@@ -1,4 +1,3 @@
-import to from "await-to-ts";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, bearer, openAPI } from "better-auth/plugins";
@@ -26,12 +25,7 @@ export const auth = betterAuth({
 		sendOnSignIn: true,
 		sendVerificationEmail: async ({ user, url }) => {
 			const mail = new MailServer(transporter);
-			const [error] = await to(
-				mail.sendVerificationEmail({ recipient: user.email, tokenUrl: url }),
-			);
-			if (error) {
-				console.error(error);
-			}
+			mail.sendVerificationEmail({ recipient: user.email, tokenUrl: url });
 		},
 		afterEmailVerification: async (data) => {
 			console.log(data);
