@@ -16,7 +16,10 @@ app.use(
 		pino: pino({
 			level: "info",
 			transport: {
-				target: "hono-pino/debug-log",
+				target:
+					import.meta.env.MODE === "production"
+						? "pino-pretty"
+						: "hono-pino/debug-log",
 			},
 		}),
 		contextKey: "logger" as const,
@@ -27,7 +30,7 @@ app.use(prettyJSON());
 
 app.get("/hono", (c) => {
 	const logger = c.get("logger");
-	logger.error("Hello Hono");
+	logger.info("Hello Hono");
 	return c.json({ message: "Hello Hono" });
 });
 
