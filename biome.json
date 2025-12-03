@@ -6,7 +6,16 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": true
+		"ignoreUnknown": true,
+		"includes": [
+			"**",
+			"!node_modules",
+			"!.next",
+			"!dist",
+			"!build",
+			"!*.gen.ts",
+			"!src/components/ui"
+		]
 	},
 	"formatter": {
 		"enabled": true,
