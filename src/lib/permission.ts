@@ -13,6 +13,11 @@ export const adminRole = ac.newRole({
 	...adminAc.statements,
 });
 
+export const superadmin = ac.newRole({
+	project: ["create", "update"],
+	...adminAc.statements,
+});
+
 export const userRole = ac.newRole({
 	project: ["create", "update"],
 });

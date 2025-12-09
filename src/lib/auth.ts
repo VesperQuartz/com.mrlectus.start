@@ -5,7 +5,7 @@ import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { MailServer } from "@/services/mail";
 import { db } from "./db";
 import { transporter } from "./mail";
-import { ac, adminRole, customRole, userRole } from "./permission";
+import { ac, adminRole, customRole, superadmin, userRole } from "./permission";
 
 export const auth = betterAuth({
 	rateLimit: {
@@ -50,6 +50,7 @@ export const auth = betterAuth({
 				admin: adminRole,
 				user: userRole,
 				custom: customRole,
+				superadmin: superadmin,
 			},
 			defaultRole: "user",
 			adminRoles: ["admin", "superadmin"],
