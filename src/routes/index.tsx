@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 const App = () => {
 	return (
-		<div className="flex flex-col gap-1 mt-1 items-center justify-center">
+		<div className="mt-1 flex flex-col items-center justify-center gap-1">
 			Hello, world
+			<Button onClick={() => toast.success("Hello")}>Hello</Button>
 		</div>
 	);
 };
