@@ -7,14 +7,17 @@ import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
-const config = defineConfig(() => {
+const config = defineConfig(({ mode }) => {
 	return {
 		server: {
 			allowedHosts: ["*.local", "strong-carefully-fly.ngrok-free.app"],
 		},
 		nitro: {
 			preset: "bun",
-			sourcemap: true,
+			compressPublicAssets: true,
+			prerender: {
+				crawlLinks: true,
+			},
 		},
 		plugins: [
 			devtools(),
@@ -24,9 +27,9 @@ const config = defineConfig(() => {
 			tailwindcss(),
 			tanstackStart({
 				prerender: {
-					enabled: true,
-					crawlLinks: true,
 					autoStaticPathsDiscovery: true,
+					crawlLinks: true,
+					// enabled: mode === "production",
 				},
 			}),
 			nitro(),
