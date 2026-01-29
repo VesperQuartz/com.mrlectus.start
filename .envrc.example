@@ -1,3 +1,4 @@
+export BETTER_AUTH_BASE_URL=
 export VITE_BASE_URL=""
 export BETTER_AUTH_SECRET=
 export DB_URL=""

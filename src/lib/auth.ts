@@ -7,7 +7,9 @@ import { db } from "./db";
 import { transporter } from "./mail";
 import { ac, adminRole, customRole, superadmin, userRole } from "./permission";
 
+console.log(process.env.BETTER_AUTH_BASE_URL);
 export const auth = betterAuth({
+	baseURL: process.env.BETTER_AUTH_BASE_URL,
 	rateLimit: {
 		window: 10,
 		max: 100,

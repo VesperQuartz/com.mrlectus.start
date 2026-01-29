@@ -4,6 +4,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
+import removeConsole from "vite-plugin-remove-console";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig(({ mode }) => {
@@ -19,9 +20,10 @@ const config = defineConfig(({ mode }) => {
 			tailwindcss(),
 			tanstackStart({
 				prerender: {
-					// enabled: mode === "production",
+					// enabled: true,
 				},
 			}),
+			removeConsole(),
 			nitro({
 				preset: "bun",
 				compressPublicAssets: true,
