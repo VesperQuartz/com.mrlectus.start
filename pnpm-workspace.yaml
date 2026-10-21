@@ -4,6 +4,7 @@ allowBuilds:
   better-sqlite3: true
   core-js-pure: true
   esbuild: true
+  vue-demi: true
 minimumReleaseAgeExclude:
   - "@tanstack/form-core@1.32.1"
   - "@tanstack/form-devtools@0.2.28"

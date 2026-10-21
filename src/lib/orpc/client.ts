@@ -1,5 +1,4 @@
-import { createORPCClient } from "@orpc/client";
-import { RPCLink } from "@orpc/client/fetch";
+import { createORPCClient, type StandardUrl } from "@orpc/client";
 import type { RouterClient } from "@orpc/server";
 import { createRouterClient } from "@orpc/server";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
@@ -7,6 +6,16 @@ import { createIsomorphicFn } from "@tanstack/react-start";
 import { getCookies, getRequestHeaders } from "@tanstack/react-start/server";
 
 import router from "@/lib/orpc/router";
+import { OpenAPILink } from "@orpc/openapi/fetch";
+import {
+  BatchLinkPlugin,
+  RequestCompressionLinkPlugin,
+  ResponseCompressionLinkPlugin,
+} from "@orpc/client/plugins";
+
+interface ClientContext {
+  cache?: RequestCache;
+}
 
 const getORPCClient = createIsomorphicFn()
   .server(() =>
@@ -18,36 +27,26 @@ const getORPCClient = createIsomorphicFn()
     }),
   )
   .client((): RouterClient<typeof router> => {
-    const link = new RPCLink({
-      url: `${window.location.origin}/api/rpc`,
-
-      method: ({ context }, path) => {
-        // Use GET for cached responses
-        if (context?.cache) {
-          return "GET";
-        }
-
-        // Use GET for rendering requests
-        if (typeof window === "undefined") {
-          return "GET";
-        }
-
-        // Use GET for read-like operations
-        if (path.at(-1)?.match(/^(?:get|find|list|search|show)(?:[A-Z].*)?$/)) {
-          return "GET";
-        }
-
-        // Use PUT for update-like operations
-        if (path.at(-1)?.match(/^(?:update|change)(?:[A-Z].*)?$/)) {
-          return "PUT";
-        }
-
-        // Use PATCH for patch-like operations
-        if (path.at(-1)?.match(/^(?:patch)(?:[A-Z].*)?$/)) {
-          return "PATCH";
-        }
-        return "POST";
-      },
+    const link = new OpenAPILink<ClientContext>(router, {
+      url: `${window.location.origin}/api/rpc` as StandardUrl,
+      plugins: [
+        new RequestCompressionLinkPlugin(),
+        new ResponseCompressionLinkPlugin(),
+        new BatchLinkPlugin({
+          groups: [
+            {
+              condition: ({ context }) => context?.cache === "force-cache",
+              context: {
+                cache: "force-cache",
+              },
+            },
+            {
+              condition: () => true,
+              context: {},
+            },
+          ],
+        }),
+      ],
     });
     return createORPCClient(link);
   });

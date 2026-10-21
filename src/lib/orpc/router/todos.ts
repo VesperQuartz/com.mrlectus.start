@@ -1,5 +1,5 @@
-import { os } from "@orpc/server";
 import * as z from "zod";
+import { base } from "../base";
 
 const todos = [
   { id: 1, name: "Get groceries" },
@@ -7,15 +7,18 @@ const todos = [
   { id: 3, name: "Finish the project" },
 ];
 
-export const listTodos = os
-  .route({ method: "GET", path: "/todo" })
-  .input(z.object({}))
-  .handler(() => {
-    return todos;
-  });
-
-export const addTodo = os.input(z.object({ name: z.string() })).handler(({ input }) => {
-  const newTodo = { id: todos.length + 1, name: input.name };
-  todos.push(newTodo);
-  return newTodo;
+export const listTodos = base.route({ method: "GET", path: "/todos" }).handler(() => {
+  return todos;
 });
+
+export const addTodo = base
+  .route({
+    method: "POST",
+    path: "/todos",
+  })
+  .input(z.object({ name: z.string() }))
+  .handler(({ input }) => {
+    const newTodo = { id: todos.length + 1, name: input.name };
+    todos.push(newTodo);
+    return newTodo;
+  });

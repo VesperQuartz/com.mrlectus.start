@@ -1,12 +1,9 @@
-import { TanStackDevtools } from "@tanstack/react-devtools";
-import { formDevtoolsPlugin } from "@tanstack/react-form-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import { createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Devtools } from "@/providers/devtools";
 import { LoadingProvider } from "@/providers/loaders/loader";
-import TanStackQueryDevtools from "@/providers/query/devtools";
 import "../globals.css";
 
 export interface RootContext {
@@ -42,20 +39,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <TooltipProvider>
           <LoadingProvider>
             {children}
-            <TanStackDevtools
-              config={{
-                position: "bottom-left",
-                openHotkey: ["Meta", "Shift", "O"],
-              }}
-              plugins={[
-                {
-                  name: "Tanstack Router",
-                  render: <TanStackRouterDevtoolsPanel />,
-                },
-                TanStackQueryDevtools,
-                formDevtoolsPlugin(),
-              ]}
-            />
+            <Devtools />
           </LoadingProvider>
         </TooltipProvider>
         <Scripts />
