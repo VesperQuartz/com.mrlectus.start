@@ -21,6 +21,7 @@ const config = defineConfig(({ mode }) => {
       rules: { "vite-plus/prefer-vite-plus-imports": "error" },
       options: { typeAware: true, typeCheck: true },
       ignorePatterns: ["src/components/ui/**"],
+      plugins: ["react", "react-perf", "import", "promise"],
     },
     pack: tsdownConfig,
     server: {
